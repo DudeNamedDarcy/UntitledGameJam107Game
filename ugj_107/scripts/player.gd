@@ -13,13 +13,18 @@ class_name Player extends CharacterBody3D
 @export_range(1.0, 100.0, 0.1) var acceleration_sprint = 25.0
 @export_range(1.0, 100.0, 0.1) var deceleration = 15.0
 
-
+#adding gravity and jumping to our code
+@export_category("Gravity and Jumping")
+var gravity = 17.8; #gravitational acceleration
+var max_fall_speed = 20; #limits how fast a player can fall, in m/s
+var jump_velocity = 9.0;
+var number_of_jumps = 2;
 
 
 func _unhandled_input(event: InputEvent): #NOTE: THIS FUNCTION MUST BE CALLED"_unhandled_input" to work!!!
 	#to remove the mouse cursor from our game window, we use "Input.mouse_mode" for that!
 	var is_mouse_button = event is InputEventMouseButton #checks if the mouse was clicked
-	var is_mouse_captured = Input.mouse_mode == Input.MOUSE_MODE_CAPTURED #boolean statement to see if the mouse cursot is gone (true) or not (false)
+	var is_mouse_captured = Input.mouse_mode == Input.MOUSE_MODE_CAPTURED #boolean statement to see if the mouse cursor is gone (true) or not (false)
 	var is_escape_pressed = event.is_action_pressed("ui_cancel") #variable assigned to the Escape key being pressed.
 	
 	if is_mouse_button and not is_mouse_captured:
@@ -61,6 +66,7 @@ func _physics_process(delta: float) -> void:
 		var max_speed = max_speed_jog
 		var acceleration = acceleration_jog
 		if Input.is_action_just_pressed("run"): #if we press the Sprint/Shift key AKA RUNNING!
+			print("run!!!")
 			max_speed = max_speed_sprint
 			acceleration = acceleration_sprint
 		var velocity_ground_plane = Vector3(velocity.x, 0, velocity.z)
@@ -74,6 +80,22 @@ func _physics_process(delta: float) -> void:
 		velocity_ground_plane = velocity_ground_plane.move_toward(Vector3(0,0,0), deceleration * delta)
 		velocity.x = velocity_ground_plane.x
 		velocity.z = velocity_ground_plane.z
+	
+	if not is_on_floor(): #if our guy is not on the floor
+		velocity.y -= gravity * delta
+		if Input.is_action_just_pressed("jump") and number_of_jumps > 0:
+			velocity.y += jump_velocity
+			number_of_jumps = 0;
+	
+	if is_on_floor():
+		number_of_jumps = 2
+		print(number_of_jumps)
+
+	if is_on_floor() and Input.is_action_just_pressed("jump"):
+		number_of_jumps -= 1
+		velocity.y = 1.5*jump_velocity
+		print("jump!")
+		print(number_of_jumps)
 
 	move_and_slide() #ALWAYS ADD THIS AT THE END OF PHYSICS PROCESS FOR SOMETHING THAT MOVES!!!
 	

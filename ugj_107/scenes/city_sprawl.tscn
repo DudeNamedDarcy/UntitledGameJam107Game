@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://q5qtrfs2to44"]
+
+[ext_resource type="PackedScene" uid="uid://kuaqxycv5yme" path="res://scenes/player.tscn" id="1_ck3q1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6gen5"]
+
+[node name="City Sprawl" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ck3q1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(20, 0, 0, 0, 300, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_6gen5")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D/CollisionShape3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -0.265001, 0.964248, 0, -0.964248, -0.265001, 0, 10.2787, 0)

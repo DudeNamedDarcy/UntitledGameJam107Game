@@ -1,12 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://g5t74sud2kwr"]
+[gd_scene load_steps=3 format=3 uid="uid://kf20wibvgjop"]
 
-[ext_resource type="PackedScene" uid="uid://cyxs1pevjkno4" path="res://scenes/player.tscn" id="1_g7g4h"]
+[ext_resource type="PackedScene" uid="uid://kuaqxycv5yme" path="res://scenes/player.tscn" id="1_g7g4h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g7g4h"]
 
 [node name="TestScene" type="Node3D"]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.515674, -10)
-size = Vector3(5, 1, 25)
-
 [node name="Player" parent="." instance=ExtResource("1_g7g4h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.88355, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(10, 0, 0, 0, 1, 0, 0, 0, 10, 0, 0, 0)
+shape = SubResource("BoxShape3D_g7g4h")
