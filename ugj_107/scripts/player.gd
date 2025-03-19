@@ -21,6 +21,7 @@ var jump_velocity = 13.0;
 var double_jump_velocity = 4.0;
 var number_of_jumps = 2;
 
+signal next_level
 
 func _unhandled_input(event: InputEvent): #NOTE: THIS FUNCTION MUST BE CALLED"_unhandled_input" to work!!!
 	#to remove the mouse cursor from our game window, we use "Input.mouse_mode" for that!
@@ -98,5 +99,8 @@ func _physics_process(delta: float) -> void:
 		print("jump!")
 		print(number_of_jumps)
 
+	if Input.is_action_just_pressed("change_level"):
+		emit_signal("next_level")
+	
 	move_and_slide() #ALWAYS ADD THIS AT THE END OF PHYSICS PROCESS FOR SOMETHING THAT MOVES!!!
 	

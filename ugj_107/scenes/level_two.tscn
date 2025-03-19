@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://cg67xynl7bqao"]
+
+[ext_resource type="PackedScene" uid="uid://kuaqxycv5yme" path="res://scenes/player.tscn" id="1_dmexl"]
+[ext_resource type="PackedScene" uid="uid://djfso08bcd8r3" path="res://scenes/end_goal.tscn" id="2_8cim8"]
+[ext_resource type="Script" uid="uid://xt8bws3aih0w" path="res://scripts/Global.gd" id="3_8lyp7"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6gen5"]
+
+[node name="City Sprawl" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_dmexl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(20, 0, 0, 0, 300, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_6gen5")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D/CollisionShape3D"]
+
+[node name="RigidBody3D2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, -18.0258, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
+transform = Transform3D(20, 0, 0, 0, 300, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_6gen5")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D2/CollisionShape3D"]
+
+[node name="RigidBody3D3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.907777, -0.419452, 0, 0.419452, 0.907777, -35, -150, -50)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
+transform = Transform3D(20, 0, 0, 0, 300, 0, 0, 0, 20, 0, 0, 0)
+shape = SubResource("BoxShape3D_6gen5")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D3/CollisionShape3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -0.265001, 0.964248, 0, -0.964248, -0.265001, 0, 10.2787, 0)
+
+[node name="EndGoal" parent="." instance=ExtResource("2_8cim8")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 36.25, 4.007, 0)
+
+[node name="Global" type="Node" parent="."]
+script = ExtResource("3_8lyp7")
+
+[connection signal="next_level" from="Player" to="Global" method="_on_player_next_level"]
