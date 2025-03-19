@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://rd3v285rngct"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nk8ba"]
+
+[node name="Building" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(20, 0, 0, 0, 300, 0, 0, 0, 20, 0, -150, 0)
+shape = SubResource("BoxShape3D_nk8ba")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="StaticBody3D/CollisionShape3D"]

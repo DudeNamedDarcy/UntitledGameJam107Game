@@ -2,40 +2,20 @@
 
 [ext_resource type="PackedScene" uid="uid://kuaqxycv5yme" path="res://scenes/player.tscn" id="1_ck3q1"]
 [ext_resource type="PackedScene" uid="uid://djfso08bcd8r3" path="res://scenes/end_goal.tscn" id="2_6gen5"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_6gen5"]
+[ext_resource type="PackedScene" uid="uid://rd3v285rngct" path="res://scenes/building.tscn" id="2_865tj"]
 
 [node name="City Sprawl" type="Node3D"]
 
 [node name="Player" parent="." instance=ExtResource("1_ck3q1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="RigidBody3D" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -150, 0)
+[node name="Building" parent="." instance=ExtResource("2_865tj")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
-transform = Transform3D(20, 0, 0, 0, 300, 0, 0, 0, 20, 0, 0, 0)
-shape = SubResource("BoxShape3D_6gen5")
+[node name="Building3" parent="." instance=ExtResource("2_865tj")]
+transform = Transform3D(1, 0, 0, 0, 0.854377, -0.519653, 0, 0.519653, 0.854377, -51.2608, -21.3834, -0.176979)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D/CollisionShape3D"]
-
-[node name="RigidBody3D2" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, -150, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D2"]
-transform = Transform3D(20, 0, 0, 0, 300, 0, 0, 0, 20, 0, 0, 0)
-shape = SubResource("BoxShape3D_6gen5")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D2/CollisionShape3D"]
-
-[node name="RigidBody3D3" type="RigidBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 0.907777, -0.419452, 0, 0.419452, 0.907777, -35, -150, -50)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D3"]
-transform = Transform3D(20, 0, 0, 0, 300, 0, 0, 0, 20, 0, 0, 0)
-shape = SubResource("BoxShape3D_6gen5")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="RigidBody3D3/CollisionShape3D"]
+[node name="Building2" parent="." instance=ExtResource("2_865tj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 

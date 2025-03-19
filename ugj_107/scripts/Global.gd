@@ -5,8 +5,11 @@ var levels = ["res://scenes/city_sprawl.tscn", #Level One
 "res://scenes/main_menu.tscn"
 ]
 
+var index = 0
+
 func _onready():
-	pass
+	get_tree().change_scene_to_file(levels[index])
 
 func _on_player_next_level() -> void:
-	pass # Replace with function body.
+	index += 1
+	get_tree().change_scene_to_file(levels[index])

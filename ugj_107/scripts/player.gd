@@ -18,12 +18,12 @@ class_name Player extends CharacterBody3D
 var gravity = 17.8; #gravitational acceleration
 var max_fall_speed = 40; #limits how fast a player can fall, in m/s
 var jump_velocity = 13.0;
-var double_jump_velocity = 4.0;
+var double_jump_velocity = 14.0;
 var number_of_jumps = 2;
 
 signal next_level
 
-func _unhandled_input(event: InputEvent): #NOTE: THIS FUNCTION MUST BE CALLED"_unhandled_input" to work!!!
+func _unhandled_input(event: InputEvent) -> void: #NOTE: THIS FUNCTION MUST BE CALLED"_unhandled_input" to work!!!
 	#to remove the mouse cursor from our game window, we use "Input.mouse_mode" for that!
 	var is_mouse_button = event is InputEventMouseButton #checks if the mouse was clicked
 	var is_mouse_captured = Input.mouse_mode == Input.MOUSE_MODE_CAPTURED #boolean statement to see if the mouse cursor is gone (true) or not (false)
