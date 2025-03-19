@@ -99,8 +99,8 @@ func _physics_process(delta: float) -> void:
 		print("jump!")
 		print(number_of_jumps)
 
-	if Input.is_action_just_pressed("change_level"):
-		emit_signal("next_level")
-	
+	if position.y < -45: #die if we 
+		get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
 	move_and_slide() #ALWAYS ADD THIS AT THE END OF PHYSICS PROCESS FOR SOMETHING THAT MOVES!!!
 	

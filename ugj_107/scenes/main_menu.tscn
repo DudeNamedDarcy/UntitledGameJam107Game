@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://4j8djvmu7n6b"]
+[gd_scene load_steps=2 format=3 uid="uid://4j8djvmu7n6b"]
+
+[ext_resource type="Script" uid="uid://bckah0161dsr7" path="res://scenes/main_menu.gd" id="1_l6cm7"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -7,6 +9,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_l6cm7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -35,3 +38,15 @@ text = "Start Game"
 [node name="QuitGameButton" type="Button" parent="CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Quit Game"
+
+[node name="TimerTestLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center] [hehe] [/center]"
+fit_content = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+autostart = true
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]

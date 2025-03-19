@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwigsvehvrwre"]
+
+[ext_resource type="PackedScene" uid="uid://kuaqxycv5yme" path="res://scenes/player.tscn" id="1_jyl00"]
+[ext_resource type="PackedScene" uid="uid://djfso08bcd8r3" path="res://scenes/end_goal.tscn" id="2_ol28e"]
+[ext_resource type="Script" uid="uid://xt8bws3aih0w" path="res://scripts/Global.gd" id="3_jyw0m"]
+[ext_resource type="PackedScene" uid="uid://rd3v285rngct" path="res://scenes/building.tscn" id="4_ol28e"]
+
+[node name="City Sprawl" type="Node3D"]
+
+[node name="Player" parent="." instance=ExtResource("1_jyl00")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -0.265001, 0.964248, 0, -0.964248, -0.265001, 0, 10.2787, 0)
+
+[node name="EndGoal" parent="." instance=ExtResource("2_ol28e")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -35.172, -12.8929, 13.497)
+
+[node name="Global" type="Node" parent="."]
+script = ExtResource("3_jyw0m")
+
+[node name="Building" parent="." instance=ExtResource("4_ol28e")]
+
+[node name="Building2" parent="." instance=ExtResource("4_ol28e")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.4932, 67.9056, -17.7369)
+
+[node name="Building3" parent="." instance=ExtResource("4_ol28e")]
+transform = Transform3D(1, 0, 0, 0, 0.890721, -0.45455, 0, 0.45455, 0.890721, -33.4864, -16.2142, 13.8371)
+
+[connection signal="next_level" from="Player" to="Global" method="_on_player_next_level"]
