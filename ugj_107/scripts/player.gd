@@ -6,18 +6,19 @@ class_name Player extends CharacterBody3D
 
 #adding maximum speeds and accelerations to our movement
 @export_category("Ground Movement")
-@export_range(1.0, 10.0, 0.1) var max_speed_jog = 4.0
+@export_range(1.0, 10.0, 0.1) var max_speed_jog = 7.5
 #export_ranfw works like (minimum value, maximum value, 
-@export_range(1.0, 15.0, 0.1) var max_speed_sprint = 8.7
-@export_range(1.0, 100.0, 0.1) var acceleration_jog = 15.0
+@export_range(1.0, 15.0, 0.1) var max_speed_sprint = 20.0
+@export_range(1.0, 100.0, 0.1) var acceleration_jog = 25.0
 @export_range(1.0, 100.0, 0.1) var acceleration_sprint = 25.0
 @export_range(1.0, 100.0, 0.1) var deceleration = 15.0
 
 #adding gravity and jumping to our code
 @export_category("Gravity and Jumping")
 var gravity = 17.8; #gravitational acceleration
-var max_fall_speed = 20; #limits how fast a player can fall, in m/s
-var jump_velocity = 9.0;
+var max_fall_speed = 40; #limits how fast a player can fall, in m/s
+var jump_velocity = 13.0;
+var double_jump_velocity = 4.0;
 var number_of_jumps = 2;
 
 
@@ -84,7 +85,7 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor(): #if our guy is not on the floor
 		velocity.y -= gravity * delta
 		if Input.is_action_just_pressed("jump") and number_of_jumps > 0:
-			velocity.y += jump_velocity
+			velocity.y = double_jump_velocity
 			number_of_jumps = 0;
 	
 	if is_on_floor():
@@ -93,7 +94,7 @@ func _physics_process(delta: float) -> void:
 
 	if is_on_floor() and Input.is_action_just_pressed("jump"):
 		number_of_jumps -= 1
-		velocity.y = 1.5*jump_velocity
+		velocity.y = jump_velocity
 		print("jump!")
 		print(number_of_jumps)
 
