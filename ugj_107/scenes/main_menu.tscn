@@ -49,4 +49,5 @@ fit_content = true
 wait_time = 60.0
 autostart = true
 
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
 [connection signal="pressed" from="CenterContainer/VBoxContainer/QuitGameButton" to="." method="_on_quit_game_button_pressed"]
